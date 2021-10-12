@@ -24,7 +24,7 @@
 
 #### 数据加载和处理
 
-![image-20211012161408930](C:\Users\Administrator\Desktop\pics\2.png)
+![image-20211012161408930](https://github.com/kelseyscat/desktop-tutorial/blob/main/pics/2.png)
 
 * ToTensor**是指把PIL.Image(RGB) 或者numpy.ndarray(H x W x C) 从0到255的值映射到0到1的范围内，并转化成Tensor格式。
 
@@ -34,11 +34,11 @@
 
   标准化后，实现了数据中心化，这符合数据分布规律，能增加模型的泛化能力。
 
-![image-20211012161540204](C:\Users\Administrator\Desktop\pics\3.png)
+![image-20211012161540204](https://github.com/kelseyscat/desktop-tutorial/blob/main/pics/3.png)
 
 * cifar10的数据已经被封装在torchvision.datasets中了，这里就是把它下载下来，如果下载训练集train = True，下载测试集就设置为False，transform对数据进行变换。
 
-![image-20211012161951006](C:\Users\Administrator\Desktop\pics\4.png)
+![image-20211012161951006](https://github.com/kelseyscat/desktop-tutorial/blob/main/pics/4.png)
 
 * trainset是大数据量，要用DataLoade对其进行 shuffle, 分割成mini-batch
 * pytorch中dataloader的大小将根据batch_size的大小自动调整。如果训练数据集有1000个样本，并且batch_size的大小为10，则dataloader的长度就是100。
@@ -52,7 +52,7 @@
 
 这个process可以反复进行多次，次数事先决定。最后把数据进行flatten（展成一列），把flatten output丢到一般的全连接层里去，最终得到影像识别结果。
 
-![image-20211012162342811](C:\Users\Administrator\Desktop\pics\5.png)
+![image-20211012162342811](https://github.com/kelseyscat/desktop-tutorial/blob/main/pics/5.png)
 
 * **nn.Module是所有神经网络的基类**，我们自己定义任何神经网络， **都要继承nn.Module**
 
@@ -62,7 +62,7 @@
 
   **conv2**的输入：四维，常用于图像卷积，[batch, channels, H, W]。
 
-  print了一下输入数据的shape，![img](C:\Users\Administrator\Desktop\pics\6.png)，图像格式是这样的，4个batch，3个channels，长和宽都是32像素。
+  print了一下输入数据的shape，![img](https://github.com/kelseyscat/desktop-tutorial/blob/main/pics/6.png)，图像格式是这样的，4个batch，3个channels，长和宽都是32像素。
 
   所以Conv2d(3, 6, 5)表示输入的是3通道的图像，输出6通道的图像，而一般卷积层采用的都是5x5大小的卷积核。
 
@@ -78,14 +78,14 @@
 
 #### 定义损失函数和优化器
 
-![image-20211012164945131](C:\Users\Administrator\Desktop\pics\7.png)
+![image-20211012164945131](https://github.com/kelseyscat/desktop-tutorial/blob/main/pics/7.png)
 
 * 用交叉熵作为损失函数，并且采用随机梯度下降的方法对梯度进行优化
 * pytorch将深度学习中常用的优化方法全部封装在torch.optim之中
 
 #### 训练
 
-![image-20211012165456573](C:\Users\Administrator\Desktop\pics\8.png)
+![image-20211012165456573](https://github.com/kelseyscat/desktop-tutorial/blob/main/pics/8.png)
 
 * 想要计算各个variable的梯度，只需调用根节点的backward方法，Autograd就会自动沿着整个计算图进行反向计算，而loss就是根节点。
 
@@ -101,35 +101,35 @@
 
 * 训练过程
 
-  ![image-20211012170554273](C:\Users\Administrator\Desktop\pics\9.png)
+  ![image-20211012170554273](https://github.com/kelseyscat/desktop-tutorial/blob/main/pics/9.png)
 
 #### 测试
 
 * 先是随机取4张图片进行测试
 
-  ![image-20211012170510683](C:\Users\Administrator\Desktop\pics\10.png)
+  ![image-20211012170510683](https://github.com/kelseyscat/desktop-tutorial/blob/main/pics/10.png)
 
   结果为
 
-  ![image-20211012170728378](C:\Users\Administrator\Desktop\pics\11.png)
+  ![image-20211012170728378](https://github.com/kelseyscat/desktop-tutorial/blob/main/pics/11.png)
 
 * 接下来看一下整体的正确率
 
-  ![image-20211012170834598](C:\Users\Administrator\Desktop\pics\12.png)
+  ![image-20211012170834598](https://github.com/kelseyscat/desktop-tutorial/blob/main/pics/12.png)
 
   结果为
 
-  ![image-20211012170900138](C:\Users\Administrator\Desktop\pics\13.png)
+  ![image-20211012170900138](https://github.com/kelseyscat/desktop-tutorial/blob/main/pics/13.png)
 
   正确率在53%左右
 
 * 看一下每个类分类正确的概率
 
-  ![image-20211012171305240](C:\Users\Administrator\Desktop\pics\14.png)
+  ![image-20211012171305240](https://github.com/kelseyscat/desktop-tutorial/blob/main/pics/14.png)
 
   结果为
 
-  ![image-20211012171520815](C:\Users\Administrator\Desktop\pics\15.png)
+  ![image-20211012171520815](https://github.com/kelseyscat/desktop-tutorial/blob/main/pics/15.png)
 
 #### 特别说明
 
